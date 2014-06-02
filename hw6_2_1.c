@@ -10,30 +10,6 @@ typedef struct
 	char data[10];
 } Str;
 
-void postorder_integer_avl(const struct avl_node *node)
-{
-	if (!node) return ;
-	
-	printf("%d ", *((int *)node->avl_data));
-	if (node->avl_link[0] || node->avl_link[1])
-	{
-		putchar('(');
-		postorder_integer_avl(node->avl_link[0]);
-		putchar(',');
-		putchar(' ');
-		postorder_integer_avl(node->avl_link[1]);
-		putchar(')');
-	}
-}
-
-void inorder_bst(const struct bst_node *node)
-{
-	if (!node) return ;
-	inorder_bst(node->bst_link[0]);
-	printf("%s ", ((Str *)node->bst_data)->data);
-	inorder_bst(node->bst_link[1]);
-}
-
 void preorder_str_avl(const struct avl_node *node)
 {
 	if (!node) return ;

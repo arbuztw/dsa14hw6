@@ -14,41 +14,13 @@ typedef struct
 void inorder(const struct avl_node *node, int check, int idx)
 {
 	if (!node) return ;
-	if (check != node->avl_cnode[0] + node->avl_cnode[1] + 1)
-	{
-		printf("%d ", idx);
-		puts("jizz");
-	}
-	//putchar('(');
 	inorder(node->avl_link[0], node->avl_cnode[0], idx*2+1);
-	//printf(" %d, %d ", node->avl_cnode[0], node->avl_cnode[1]);
-	//putchar('');
-	//printf("%s ", ((Student *)node->avl_data)->name);
 	inorder(node->avl_link[1], node->avl_cnode[1], idx*2+2);
-	//putchar(')');
 }
 
 Student *findRank(const struct avl_node *node, int r)
 {
 	int c = node->avl_cnode[0];
-/*
-	while (r != c + 1)
-	{
-		//printf("(%d, %d, %d) ", r, c, node->avl_cnode[1]);
-		if (r <= c)
-			node = node->avl_link[0];
-		else
-		{
-			node = node->avl_link[1];
-			r -= (c + 1);
-		}
-		if (!node) puts("jizz");
-		fflush(stdout);
-		c = node->avl_cnode[0];
-	}
-	return (Student *)node->avl_data;
-*/
-//	printf("%d ", c);
 	if (r == c + 1)
 		return (Student *)node->avl_data;
 	else if (r <= c)
@@ -71,8 +43,6 @@ int cmp(const void *pa, const void *pb, void *param)
 	else if (a->score[3] != b->score[3]) return -(a->score[3] - b->score[3]);
 	else if (a->score[0] != b->score[0]) return -(a->score[0] - b->score[0]);
 	else return strcmp(a->name, b->name);
-
-	return strcmp(a->name, b->name);
 }
 
 int main()
@@ -102,11 +72,8 @@ int main()
 		{
 			scanf("%d", &x);
 			s = findRank(tree->avl_root, x);
-			//puts("");
 			printf("%s\n", s->name);
 		}
 	}
-	//inorder(tree->avl_root, cnt-1, 0);
-	//puts("");
 	return 0;
 }
